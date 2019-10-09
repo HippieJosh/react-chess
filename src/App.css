@@ -10,28 +10,64 @@
   color: white;
 }
 
-@media screen and (min-width:800px) {
+.chess-board {
+  border:solid rgb(165, 97, 42) 3px;
+  width:800px !important;
+  height:800px !important;
+}
+@media screen and (max-width:999px) {
   .chess-board {
-    width:45vw !important;
+    width:800px !important;
+    height:800px !important;
+  }
+}
+@media screen and (max-width:899px) {
+  .chess-board {
+    width:700px !important;
+    height:700px !important;
   }
 }
 @media screen and (max-width:799px) {
   .chess-board {
-    width:85vw !important;
+    width:600px !important;
+    height:600px !important;
+  }
+}
+@media screen and (max-width:699px) {
+  .chess-board {
+    width:500px !important;
+    height:500px !important;
+  }
+}
+@media screen and (max-width:599px) {
+  .chess-board {
+    width:400px !important;
+    height:400px !important;
+  }
+}
+@media screen and (max-width:499px) {
+  .chess-board {
+    width:300px !important;
+    height:300px !important;
   }
 }
 
-
-.chess-board {
-  border: solid darkgoldenrod 1px;
-}
-.chess-square {
+.square {
   width:12.5% !important;
+  height:12.5% !important;
   padding:0 !important;
   margin:0 !important;
   vertical-align:middle;
-  width:100px;
+  display:inline-block;
 }
+.black-square {
+  background-color:#222;
+}
+.white-square {
+  background-color:#DDD;
+}
+
 .chess-piece {
-  width:8%;
+  width:45%;
+  margin-top:20px;
 }

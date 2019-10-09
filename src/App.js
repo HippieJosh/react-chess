@@ -26,9 +26,9 @@ function create_board() {
   // let gd = SQUARES[2];
   // let gl = SQUARES[3];
   let board = init_board();
-  let piece_position
+  // let piece_position
   let alternate = [bd,bl];
-  let flip = '#FFF'; //make into counter for each indivudual square
+  let flip = 'square white-square';
   let count = -1
 
   for (let file=0; file<board[0].length; file++) {
@@ -37,14 +37,13 @@ function create_board() {
       let piece = get_file_piece(rank,file);
 
       board[file][rank]=(
-      <div background={flip}>
+      <div class={flip}>
         <img src={piece} className="chess-piece" alt={piece} key={(count)}/>
       </div>)
-      flip === '#000' ? flip='#FFF' : flip='#000';
+      flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
     }
-    flip === '#000' ? flip='#FFF' : flip='#000';
+    flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
   }
-  console.log(PIECES)
   return board
 }
 
