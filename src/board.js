@@ -34,60 +34,65 @@ export default class Board {
     let flip = 'square white-square';
     let count = -1
     
-    for (let file=0; file<this.board_array[0].length; file++) {
-      for (let rank=0; rank<this.board_array[0].length; rank++) {
-      count ++;
-      let piece = this.get_piece(rank,file);
+    for (let rank=0; rank<this.board_array[0].length; rank++) {
+      for (let file=0; file<this.board_array[0].length; file++) {
+        count ++;
+
+        let piece = this.get_piece(file,rank);
+        if(piece) {
+          this.board_array[rank][file] = (
+            <div className={flip} key={(count)}>
+              <img src={piece} className="chess-piece" alt={piece}/>
+            </div>
+          )
+        } else {
+          this.board_array[rank][file] = (<div className={flip} key={(count)}></div>)
+        }
   
-      this.board_array[file][rank]=(
-        <div class={flip}>
-          <img src={piece} className="chess-piece" alt={piece} key={(count)}/>
-        </div>
-      )
-      flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
-      }
-      flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
+        flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
+        }
+        flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
     }
   }
       
   get_piece(file, rank) {
     if (rank === 0) {
       switch (file) {
-        case (file===0): {
+        case 0: {
           return B_ROOK;
-        } case (file===1):  {
+        } case 1:  {
           return B_KNIGHT;
-        } case (file===2): {
+        } case 2: {
           return B_BISHOP;
-        } case (file===3): {
+        } case 3: {
           return B_QUEEN;
-        } case (file===4): {
+        } case 4: {
           return B_KING;
-        } case (file===5): {
+        } case 5: {
           return B_BISHOP;
-        } case (file===6): {
+        } case 6: {
           return B_KNIGHT;
-        } case (file===7): {
+        } case 7: {
           return B_ROOK;
         }
       }
     } else if (rank === 7) {
       switch (file) {
-        case (file===0): {
+        case 0: {
           return W_ROOK;
-        } case (file===1):  {
+        } case 1:  {
           return W_KNIGHT;
-        } case (file===2): {
+        } case 2: {
           return W_BISHOP;
-        } case (file===3): {
+        } case 3: {
           return W_QUEEN;
-        } case (file===4): {
+        } case 4: {
           return W_KING;
-        } case (file===5): {
+        } case 5: {
           return W_BISHOP;
-        } case (file===6): {
+        } case 6: {
           return W_KNIGHT;
-        } case (file===7): {
+        } case 7: {
           return W_ROOK;
         }
       }

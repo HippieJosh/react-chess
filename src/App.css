@@ -68,6 +68,7 @@
 }
 
 .chess-piece {
-  width:45%;
-  margin-top:20px;
+  width:65%;
+  height:80%;
+  margin-top:10px;
 }
