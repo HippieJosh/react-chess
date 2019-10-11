@@ -1,22 +1,13 @@
+//imports
 import React from 'react';
+import Piece from './piece.js';
+
 function importAll(r) {
   return r.keys().map(r);
 }
 
-let pieces     = importAll(require.context('./assets/svg_no_shadow', false, /\.(png|jpe?g|svg)$/));
-const B_BISHOP = pieces[0]
-const B_KING   = pieces[1]
-const B_KNIGHT = pieces[2]
-const B_PAWN   = pieces[3]
-const B_QUEEN  = pieces[4]
-const B_ROOK   = pieces[5]
-const W_BISHOP = pieces[6]
-const W_KING   = pieces[7]
-const W_KNIGHT = pieces[8]
-const W_PAWN   = pieces[9]
-const W_QUEEN  = pieces[10]
-const W_ROOK   = pieces[11]
 
+//class def
 export default class Board {
   constructor() {
     this.board_array = new Array(8);
@@ -25,28 +16,25 @@ export default class Board {
     }
     this.create_board()
   }
-
-  get board() {
-    return this.board_array;
-  }
       
   create_board() {
+    let valid_ranks = [0,1,6,7];
     let flip = 'square white-square';
-    let count = -1
+    let count = -1;
     
     for (let rank=0; rank<this.board_array[0].length; rank++) {
       for (let file=0; file<this.board_array[0].length; file++) {
         count ++;
 
-        let piece = this.get_piece(file,rank);
-        if(piece) {
+        if(valid_ranks.includes(rank)) {
+          let piece = new Piece(file,rank);
           this.board_array[rank][file] = (
-            <div className={flip} key={(count)}>
-              <img src={piece} className="chess-piece" alt={piece}/>
+            <div className={flip} key={count}>
+              <img src={piece.image} className="chess-piece" alt={piece.image}/>
             </div>
           )
         } else {
-          this.board_array[rank][file] = (<div className={flip} key={(count)}></div>)
+          this.board_array[rank][file] = (<div className={flip} key={count}></div>)
         }
   
         flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
@@ -54,52 +42,4 @@ export default class Board {
         flip === 'square black-square' ? flip='square white-square' : flip='square black-square';
     }
   }
-      
-  get_piece(file, rank) {
-    if (rank === 0) {
-      switch (file) {
-        case 0: {
-          return B_ROOK;
-        } case 1:  {
-          return B_KNIGHT;
-        } case 2: {
-          return B_BISHOP;
-        } case 3: {
-          return B_QUEEN;
-        } case 4: {
-          return B_KING;
-        } case 5: {
-          return B_BISHOP;
-        } case 6: {
-          return B_KNIGHT;
-        } case 7: {
-          return B_ROOK;
-        }
-      }
-    } else if (rank === 7) {
-      switch (file) {
-        case 0: {
-          return W_ROOK;
-        } case 1:  {
-          return W_KNIGHT;
-        } case 2: {
-          return W_BISHOP;
-        } case 3: {
-          return W_QUEEN;
-        } case 4: {
-          return W_KING;
-        } case 5: {
-          return W_BISHOP;
-        } case 6: {
-          return W_KNIGHT;
-        } case 7: {
-          return W_ROOK;
-        }
-      }
-    } else if (rank === 1) {
-        return B_PAWN
-      } else if (rank === 6) {
-        return W_PAWN
-      }
-    }
-}
+} 

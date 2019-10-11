@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <div className="chess-board">
-        {new Board().board}
+        {new Board().board_array}
       </div>
     </div>
   );
