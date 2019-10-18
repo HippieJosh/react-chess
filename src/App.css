@@ -66,9 +66,13 @@
 .white-square {
   background-color:#DDD;
 }
+.selected-square {
+  background-color:rgb(201, 159, 23);
+}
 
 .chess-piece {
-  width:75%;
+  width:80%;
   height:90%;
-  margin-top:10px;
+  margin-top:8px;
+  margin-left:4px;
 }

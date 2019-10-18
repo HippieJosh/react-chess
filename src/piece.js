@@ -6,6 +6,9 @@ function importAllFiles(r) {
 
 
 let piece_images = importAllFiles(require.context('./assets/svg_shadow', false, /\.(png|jpe?g|svg)$/));
+const piece_mappings = {
+  'b':2
+}
 const B_BISHOP_IMG = piece_images[0];
 const B_KING_IMG   = piece_images[1];
 const B_KNIGHT_IMG = piece_images[2];
@@ -24,10 +27,10 @@ export default class Piece {
   constructor(file, rank) {
     this.file = file;
     this.rank = rank;
-    this.image = this.get_piece_image(file, rank);
+    this.image = this._get_piece_image(file, rank);
   }
 
-  get_piece_image(file, rank) {
+  _get_piece_image(file, rank) {
     if (rank === 0) {
       switch (file) {
         case 0: {
@@ -73,5 +76,15 @@ export default class Piece {
     } else if (rank === 6) {
       return W_PAWN_IMG;
     }
+  }
+
+  select(key) {
+    if (document.getElementsByClassName('selected-square')) {
+      for (let sq of document.getElementsByClassName('selected-square')) {
+        sq.classList.remove('selected-square');
+      }
+    }
+    let selected_square = document.getElementById(key);
+    selected_square.classList.add('selected-square')
   }
 }
